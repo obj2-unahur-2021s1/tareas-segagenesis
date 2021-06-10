@@ -1,6 +1,7 @@
 package ar.edu.unahur.obj2.tareas
 
 import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.shouldBe
 
  class TareaTest : DescribeSpec({
@@ -13,7 +14,7 @@ import io.kotest.matchers.shouldBe
 
 
       it("Nomina de empleados que es una lista con los empleados y el responsable") {
-        tarea.nominaEmpleados().shouldBe(listOf(empleado1,empleado2,responsable))
+        tarea.nominaEmpleados().shouldContainAll(listOf(empleado1,empleado2,responsable))
       }
 
       it("Horas que se necesitan para finalizar que es la suma de las horas estimadas dividido la cantidad de empleados ") {
@@ -36,7 +37,7 @@ import io.kotest.matchers.shouldBe
      val tareaIntegracion = TareaIntegracion(responsableIntegracion, listOf(tarea1,tarea2))
 
      it("Nomina de empleados que es la suma de las nóminas de las subtareas más el responsable de la tarea de integración. "){
-       tareaIntegracion.nominaEmpleados().shouldBe(listOf(empleado1,responsable1,empleado2,responsable2,responsableIntegracion))
+       tareaIntegracion.nominaEmpleados().shouldContainAll(listOf(empleado1,responsable1,empleado2,responsableIntegracion,responsable2))
      }
 
      it("Las horas necesarias para realizarla se calculan como la suma de lo que tardan sus subtareas más una hora para reuniones de planificación por cada 8 horas de trabajo real") {
